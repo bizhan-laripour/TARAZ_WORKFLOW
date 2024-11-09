@@ -12,7 +12,10 @@
     <bpmn:scriptTask id="Activity_14p1p5i" name="script" scriptFormat="JavaScript">
       <bpmn:incoming>Flow_0ng8l54</bpmn:incoming>
       <bpmn:outgoing>Flow_1s1edfs</bpmn:outgoing>
-      <bpmn:script>print('this script comes from camunda')</bpmn:script>
+      <bpmn:script>print('this script comes from camunda')
+print(itemName);
+print(execution.getVariable("itemName"));
+print('business key ::'+ execution.processBusinessKey)</bpmn:script>
     </bpmn:scriptTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">

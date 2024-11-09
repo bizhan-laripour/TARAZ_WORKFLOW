@@ -13,11 +13,14 @@ public class HomeController {
 
 
     @GetMapping("/execute")
-    public ResponseEntity<?> execute(){
+    public ResponseEntity<?> execute() {
         ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
         ProcessInstantiationBuilder processBuilder = processEngine.getRuntimeService().createProcessInstanceByKey("first_bpmn_id");
+        String item = "computer";
+        processBuilder.setVariable("itemName", item);
+        processBuilder.businessKey("execute-endpoint");
         processBuilder.executeWithVariablesInReturn();
-        return ResponseEntity.ok("OK");
+        return ResponseEntity.ok("BPMN Execution Completed");
     }
 
 }
