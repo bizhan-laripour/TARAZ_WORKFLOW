@@ -13,13 +13,13 @@
       <bpmn:incoming>Flow_18ppbsb</bpmn:incoming>
       <bpmn:outgoing>Flow_1na55wm</bpmn:outgoing>
       <bpmn:script>var userObj = {
-	
-	id = 1,
-	name = "bizhan"
+	id : 1,
+	name : "bizhan"
 	
 }
 
-print("userObj :: " + userObj);</bpmn:script>
+print("userObj :: " + userObj);
+print("businessKey ::" + execution.processBusinessKey);</bpmn:script>
     </bpmn:scriptTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
