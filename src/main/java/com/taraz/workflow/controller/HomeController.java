@@ -23,4 +23,12 @@ public class HomeController {
         return ResponseEntity.ok("BPMN Execution Completed");
     }
 
+    @GetMapping("/script")
+    public ResponseEntity<?> script() {
+        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
+        ProcessInstantiationBuilder processBuilder = processEngine.getRuntimeService().createProcessInstanceByKey("initialize_user_object");
+        processBuilder.executeWithVariablesInReturn();
+        return ResponseEntity.ok("BPMN Execution Completed");
+    }
+
 }
