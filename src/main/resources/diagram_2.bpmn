@@ -18,7 +18,7 @@
 	
 }
 
-print("userObj :: " + userObj);
+print("userObj :: " + JSON.stringify(userObj));
 print("businessKey ::" + execution.processBusinessKey);</bpmn:script>
     </bpmn:scriptTask>
   </bpmn:process>
