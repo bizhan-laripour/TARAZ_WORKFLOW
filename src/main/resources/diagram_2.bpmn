@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ev29tc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0ev29tc" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.28.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.22.0">
   <bpmn:process id="initialize_user_object" isExecutable="true">
     <bpmn:startEvent id="StartEvent_1">
       <bpmn:outgoing>Flow_18ppbsb</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_1who7k1">
-      <bpmn:incoming>Flow_1na55wm</bpmn:incoming>
+      <bpmn:incoming>Flow_1iy52lh</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_18ppbsb" sourceRef="StartEvent_1" targetRef="Activity_1la4p4g" />
-    <bpmn:sequenceFlow id="Flow_1na55wm" sourceRef="Activity_1la4p4g" targetRef="Event_1who7k1" />
+    <bpmn:sequenceFlow id="Flow_1na55wm" sourceRef="Activity_1la4p4g" targetRef="Activity_0zb93is" />
     <bpmn:scriptTask id="Activity_1la4p4g" name="initialize user object" scriptFormat="JavaScript">
       <bpmn:incoming>Flow_18ppbsb</bpmn:incoming>
       <bpmn:outgoing>Flow_1na55wm</bpmn:outgoing>
@@ -21,18 +21,26 @@
 print("userObj :: " + JSON.stringify(userObj));
 print("businessKey ::" + execution.processBusinessKey);</bpmn:script>
     </bpmn:scriptTask>
+    <bpmn:sequenceFlow id="Flow_1iy52lh" sourceRef="Activity_0zb93is" targetRef="Event_1who7k1" />
+    <bpmn:scriptTask id="Activity_0zb93is" name="external resource script" scriptFormat="JavaScript" camunda:resource="external-resource-script.js">
+      <bpmn:incoming>Flow_1na55wm</bpmn:incoming>
+      <bpmn:outgoing>Flow_1iy52lh</bpmn:outgoing>
+    </bpmn:scriptTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="initialize_user_object">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
-        <dc:Bounds x="482" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0kg13c9_di" bpmnElement="Activity_1la4p4g">
         <dc:Bounds x="250" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
+        <dc:Bounds x="572" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0b8v4g2_di" bpmnElement="Activity_0zb93is">
+        <dc:Bounds x="400" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_18ppbsb_di" bpmnElement="Flow_18ppbsb">
         <di:waypoint x="188" y="120" />
@@ -40,7 +48,11 @@ print("businessKey ::" + execution.processBusinessKey);</bpmn:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1na55wm_di" bpmnElement="Flow_1na55wm">
         <di:waypoint x="350" y="120" />
-        <di:waypoint x="482" y="120" />
+        <di:waypoint x="400" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iy52lh_di" bpmnElement="Flow_1iy52lh">
+        <di:waypoint x="500" y="120" />
+        <di:waypoint x="572" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
