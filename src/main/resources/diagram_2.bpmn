@@ -9,7 +9,19 @@
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_18ppbsb" sourceRef="StartEvent_1" targetRef="Activity_1la4p4g" />
     <bpmn:sequenceFlow id="Flow_1na55wm" sourceRef="Activity_1la4p4g" targetRef="Activity_0zb93is" />
-    <bpmn:scriptTask id="Activity_1la4p4g" name="initialize user object" scriptFormat="JavaScript">
+    <bpmn:scriptTask id="Activity_1la4p4g" name="initialize user object" scriptFormat="JavaScript" camunda:resultVariable="userObj">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="userObj2">
+            <camunda:script scriptFormat="JavaScript">var obj = {
+	id : 4,
+	name : "babak"
+	
+}
+obj;</camunda:script>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_18ppbsb</bpmn:incoming>
       <bpmn:outgoing>Flow_1na55wm</bpmn:outgoing>
       <bpmn:script>var userObj = {
@@ -18,8 +30,10 @@
 	
 }
 
+
 print("userObj :: " + JSON.stringify(userObj));
-print("businessKey ::" + execution.processBusinessKey);</bpmn:script>
+print("businessKey ::" + execution.processBusinessKey);
+userObj;</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_1iy52lh" sourceRef="Activity_0zb93is" targetRef="Event_1who7k1" />
     <bpmn:scriptTask id="Activity_0zb93is" name="external resource script" scriptFormat="JavaScript" camunda:resource="external-resource-script.js">
