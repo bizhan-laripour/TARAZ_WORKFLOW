@@ -30,8 +30,7 @@ public class HomeController {
 
     @GetMapping("/script")
     public ResponseEntity<?> script() {
-        ProcessEngine processEngine = ProcessEngines.getDefaultProcessEngine();
-        ProcessInstantiationBuilder processBuilder = processEngine.getRuntimeService().createProcessInstanceByKey("initialize_user_object");
+        ProcessInstantiationBuilder processBuilder = bpmnService.createProcessInstantiation("initialize_user_object");
         processBuilder.businessKey("script-endpoint");
         processBuilder.executeWithVariablesInReturn();
         return ResponseEntity.ok("BPMN Execution Completed");
