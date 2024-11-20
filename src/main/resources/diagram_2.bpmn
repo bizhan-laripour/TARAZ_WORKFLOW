@@ -5,7 +5,7 @@
       <bpmn:outgoing>Flow_18ppbsb</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_1who7k1">
-      <bpmn:incoming>Flow_1i282jo</bpmn:incoming>
+      <bpmn:incoming>Flow_0dgnigm</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_18ppbsb" sourceRef="StartEvent_1" targetRef="Activity_1la4p4g" />
     <bpmn:sequenceFlow id="Flow_1na55wm" sourceRef="Activity_1la4p4g" targetRef="Activity_0zb93is" />
@@ -40,7 +40,7 @@ userObj;</bpmn:script>
       <bpmn:incoming>Flow_1na55wm</bpmn:incoming>
       <bpmn:outgoing>Flow_1iy52lh</bpmn:outgoing>
     </bpmn:scriptTask>
-    <bpmn:sequenceFlow id="Flow_1i282jo" sourceRef="Activity_1xmthdm" targetRef="Event_1who7k1" />
+    <bpmn:sequenceFlow id="Flow_1i282jo" sourceRef="Activity_1xmthdm" targetRef="Activity_0qbg7pw" />
     <bpmn:serviceTask id="Activity_1xmthdm" name="fetch email id" camunda:class="com.taraz.workflow.delegates.FetchEmail">
       <bpmn:extensionElements>
         <camunda:inputOutput>
@@ -56,14 +56,16 @@ a;</camunda:script>
       <bpmn:incoming>Flow_1iy52lh</bpmn:incoming>
       <bpmn:outgoing>Flow_1i282jo</bpmn:outgoing>
     </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0dgnigm" sourceRef="Activity_0qbg7pw" targetRef="Event_1who7k1" />
+    <bpmn:serviceTask id="Activity_0qbg7pw" name="fetchUserRole" camunda:delegateExpression="${fetchUserRoleDelegate}">
+      <bpmn:incoming>Flow_1i282jo</bpmn:incoming>
+      <bpmn:outgoing>Flow_0dgnigm</bpmn:outgoing>
+    </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="initialize_user_object">
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
-        <dc:Bounds x="762" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0kg13c9_di" bpmnElement="Activity_1la4p4g">
         <dc:Bounds x="250" y="80" width="100" height="80" />
@@ -74,6 +76,13 @@ a;</camunda:script>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_18a9cne_di" bpmnElement="Activity_1xmthdm">
         <dc:Bounds x="540" y="80" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
+        <dc:Bounds x="932" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_020soel_di" bpmnElement="Activity_0qbg7pw">
+        <dc:Bounds x="700" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_18ppbsb_di" bpmnElement="Flow_18ppbsb">
@@ -90,7 +99,11 @@ a;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1i282jo_di" bpmnElement="Flow_1i282jo">
         <di:waypoint x="640" y="120" />
-        <di:waypoint x="762" y="120" />
+        <di:waypoint x="700" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0dgnigm_di" bpmnElement="Flow_0dgnigm">
+        <di:waypoint x="800" y="120" />
+        <di:waypoint x="932" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
