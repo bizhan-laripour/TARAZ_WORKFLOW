@@ -42,6 +42,17 @@ userObj;</bpmn:script>
     </bpmn:scriptTask>
     <bpmn:sequenceFlow id="Flow_1i282jo" sourceRef="Activity_1xmthdm" targetRef="Event_1who7k1" />
     <bpmn:serviceTask id="Activity_1xmthdm" name="fetch email id" camunda:class="com.taraz.workflow.delegates.FetchEmail">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:inputParameter name="input">
+            <camunda:script scriptFormat="JavaScript">var a=2;
+a;</camunda:script>
+          </camunda:inputParameter>
+          <camunda:outputParameter name="output">
+            <camunda:script scriptFormat="JavaScript">print("output is::"+output)</camunda:script>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1iy52lh</bpmn:incoming>
       <bpmn:outgoing>Flow_1i282jo</bpmn:outgoing>
     </bpmn:serviceTask>
@@ -51,15 +62,15 @@ userObj;</bpmn:script>
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="152" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
+        <dc:Bounds x="762" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0kg13c9_di" bpmnElement="Activity_1la4p4g">
         <dc:Bounds x="250" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0b8v4g2_di" bpmnElement="Activity_0zb93is">
         <dc:Bounds x="400" y="80" width="100" height="80" />
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
-        <dc:Bounds x="762" y="102" width="36" height="36" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_18a9cne_di" bpmnElement="Activity_1xmthdm">
         <dc:Bounds x="540" y="80" width="100" height="80" />

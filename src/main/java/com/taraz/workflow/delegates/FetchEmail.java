@@ -7,5 +7,7 @@ public class FetchEmail implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         System.out.println("this is from delegate");
+        System.out.println("input is ::" + delegateExecution.getVariable("input"));
+        delegateExecution.setVariable("output", "email");
     }
 }
