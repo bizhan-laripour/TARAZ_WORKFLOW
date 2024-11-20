@@ -9,5 +9,6 @@ public class FetchUserRoleDelegate implements JavaDelegate {
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
         System.out.println("this is from fetchUserRole delegate");
+        delegateExecution.setVariable("role" , "admin");
     }
 }

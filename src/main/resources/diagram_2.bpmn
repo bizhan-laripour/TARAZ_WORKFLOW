@@ -5,7 +5,7 @@
       <bpmn:outgoing>Flow_18ppbsb</bpmn:outgoing>
     </bpmn:startEvent>
     <bpmn:endEvent id="Event_1who7k1">
-      <bpmn:incoming>Flow_0dgnigm</bpmn:incoming>
+      <bpmn:incoming>Flow_1njkghi</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_18ppbsb" sourceRef="StartEvent_1" targetRef="Activity_1la4p4g" />
     <bpmn:sequenceFlow id="Flow_1na55wm" sourceRef="Activity_1la4p4g" targetRef="Activity_0zb93is" />
@@ -56,10 +56,29 @@ a;</camunda:script>
       <bpmn:incoming>Flow_1iy52lh</bpmn:incoming>
       <bpmn:outgoing>Flow_1i282jo</bpmn:outgoing>
     </bpmn:serviceTask>
-    <bpmn:sequenceFlow id="Flow_0dgnigm" sourceRef="Activity_0qbg7pw" targetRef="Event_1who7k1" />
+    <bpmn:sequenceFlow id="Flow_0dgnigm" sourceRef="Activity_0qbg7pw" targetRef="Activity_1d14zci" />
     <bpmn:serviceTask id="Activity_0qbg7pw" name="fetchUserRole" camunda:delegateExpression="${fetchUserRoleDelegate}">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="role">
+            <camunda:script scriptFormat="JavaScript">print("role is:: "+role)</camunda:script>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
       <bpmn:incoming>Flow_1i282jo</bpmn:incoming>
       <bpmn:outgoing>Flow_0dgnigm</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_1njkghi" sourceRef="Activity_1d14zci" targetRef="Event_1who7k1" />
+    <bpmn:serviceTask id="Activity_1d14zci" name="department" camunda:expression="${userDepartmentService.getDepartment()}" camunda:resultVariable="userDepartment">
+      <bpmn:extensionElements>
+        <camunda:inputOutput>
+          <camunda:outputParameter name="department">
+            <camunda:script scriptFormat="JavaScript">print("department is:: "+userDepartment)</camunda:script>
+          </camunda:outputParameter>
+        </camunda:inputOutput>
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_0dgnigm</bpmn:incoming>
+      <bpmn:outgoing>Flow_1njkghi</bpmn:outgoing>
     </bpmn:serviceTask>
   </bpmn:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
@@ -78,12 +97,15 @@ a;</camunda:script>
         <dc:Bounds x="540" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
-        <dc:Bounds x="932" y="102" width="36" height="36" />
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_020soel_di" bpmnElement="Activity_0qbg7pw">
         <dc:Bounds x="700" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1who7k1_di" bpmnElement="Event_1who7k1">
+        <dc:Bounds x="982" y="102" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_02wwsu0_di" bpmnElement="Activity_1d14zci">
+        <dc:Bounds x="830" y="80" width="100" height="80" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_18ppbsb_di" bpmnElement="Flow_18ppbsb">
         <di:waypoint x="188" y="120" />
@@ -103,7 +125,11 @@ a;</camunda:script>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0dgnigm_di" bpmnElement="Flow_0dgnigm">
         <di:waypoint x="800" y="120" />
-        <di:waypoint x="932" y="120" />
+        <di:waypoint x="830" y="120" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1njkghi_di" bpmnElement="Flow_1njkghi">
+        <di:waypoint x="930" y="120" />
+        <di:waypoint x="982" y="120" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
